@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>PagePulse</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div>
+        <h1>PagePulse</h1>
+        <p class="host" id="host">Reading this tab…</p>
+      </div>
+      <div class="score" id="score">—<small>/100</small></div>
+    </header>
+
+    <section class="live" id="live" data-status="unknown">
+      <div class="verdict-line">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="verdict" id="verdict">Measuring</span>
+        <span class="spinner" id="spinner" aria-hidden="true"></span>
+      </div>
+      <div class="rows" id="rows"></div>
+      <div class="facts" id="facts"></div>
+      <p class="note" id="note" hidden></p>
+      <button class="wide" id="reload" type="button">Reload and measure</button>
+    </section>
+
+    <section class="unavailable" id="unavailable" hidden>
+      <p>PagePulse can't read this page. Chrome blocks extensions on its own
+        pages, the Web Store, and other extensions' pages. Open a normal
+        http or https site and try again.</p>
+    </section>
+
+    <section class="block">
+      <label class="switch">
+        <input type="checkbox" id="enabled" />
+        <span class="knob" aria-hidden="true"></span>
+        <span class="switch-text">
+          Show the readout on pages
+          <em>Turn this off to keep measuring here in the popup only.</em>
+        </span>
+      </label>
+      <label class="switch">
+        <input type="checkbox" id="startExpanded" />
+        <span class="knob" aria-hidden="true"></span>
+        <span class="switch-text">
+          Open it expanded
+          <em>Skip the collapsed pill and show all metrics right away.</em>
+        </span>
+      </label>
+    </section>
+
+    <section class="block">
+      <h2>Thresholds</h2>
+      <p class="hint">Green up to the first number, orange up to the second,
+        red beyond it. Milliseconds.</p>
+      <div class="grid head-grid">
+        <span></span><span>Green ≤</span><span>Orange ≤</span><span>Weight</span>
+      </div>
+      <div class="grid" id="thresholds"></div>
+    </section>
+
+    <section class="block">
+      <h2>Overall score</h2>
+      <div class="grid bands">
+        <span>Green from</span>
+        <input type="number" id="bandGood" min="1" max="100" step="1" />
+        <span>Orange from</span>
+        <input type="number" id="bandOk" min="0" max="99" step="1" />
+      </div>
+    </section>
+
+    <footer class="foot">
+      <button id="reset" type="button" class="ghost">Reset to defaults</button>
+      <span class="saved" id="saved" role="status"></span>
+    </footer>
+
+    <script src="shared.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
